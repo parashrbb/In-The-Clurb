@@ -364,6 +364,7 @@ body {
     .CU-Item p {
         margin: 0;
         font-size: 14px;
+        color: black;
     }
 
     .CU-item a {

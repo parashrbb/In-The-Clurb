@@ -52,13 +52,42 @@ body {
     }
 
     .menu a {
-        color: black;
-        text-decoration: none;
-        font-weight: 500;
+    position: relative;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+    z-index: 1; /* pastikan teks ada di atas */
+    }
+
+    .menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0%;
+    background: black; /* warna highlight */
+    z-index: -1;
+    transition: height 0.7s cubic-bezier(.4,0,.2,1); /* lebih lambat dan halus */
     }
 
     .menu a:hover {
-        color: gray;
+    color: white; /* teks berubah kontras saat highlight aktif */
+    }
+
+    .menu a:hover::after,
+    .menu a.active::after {
+    height: 100%;
+    }
+
+    /* Menu aktif (section sedang dilihat) */
+    .menu a.active {
+    color: white;
+    }
+    .menu a.active::after {
+    height: 100%;
     }
 
     .menu-toggle-label {
@@ -106,9 +135,16 @@ body {
             width: 100%;
         }
         .menu a {
-            width: 100%;
-            display: block;
-            padding: 8px 0;
+        position: relative;
+        color: black;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 0;
+        transition: color 0.3s ease;
+        z-index: 1; /* pastikan teks ada di atas */
+        width: 100%;
+        display: block;
+        padding: 8px 0;
         }
         header {
             position: sticky;
@@ -199,7 +235,7 @@ body {
         }
     }
 
-
+    
 /* Join Clurb Section */
     .joinclurb-section {
         display: flex;
@@ -264,7 +300,6 @@ body {
         background: transparent;
         color: #222;
         border: none;
-        border-radius: 4px;
         cursor: pointer;
         font-weight: 500;
         position: relative;
@@ -280,7 +315,6 @@ body {
         background: #222;
         z-index: 0;
         transition: height 0.5s cubic-bezier(.4,0,.2,1);
-        border-radius: 4px;
     }
 
     .btn.btn-primary:hover {
@@ -390,4 +424,65 @@ body {
         text-align: center;
         padding: 20px;
         margin-top: auto;
+    }
+
+/* Join Form */
+    .join-form {
+    margin-top: 16px;
+    }
+    .join-form input {
+    padding: 8px;
+    margin: 6px 0;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+    .join-form button {
+    padding: 8px 20px;
+    border: none;
+    background: #222;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+/* Reveal on Scroll */
+    .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease-out;
+    }
+    .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+/* Modal */
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    }
+    .modal-content {
+    position: relative;
+    max-width: 80%;
+    max-height: 80%;
+    }
+    .modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    }
+    .modal .close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
     }

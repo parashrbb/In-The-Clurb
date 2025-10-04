@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 <body>
 
     <header>
-        <a href="Intheclurb.html">
+        <a href="index.html">
             <img class="logo" src="logointheclurb.png" alt="In The Clurb Logo" width="100" height="50">
         </a>
         <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" hidden>

@@ -1,17 +1,20 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username'])) {
+// Redirect ke dashboard jika sudah login
+if (isset($_SESSION['username'])) {
     header("Location: dashboard.php");
     exit();
 }
 
-$error = "";
+// Ambil pesan dari query string jika ada
+$msg = isset($_GET['msg']) ? $_GET['msg'] : '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Ganti dengan validasi yang sesuai
+    // Validasi sederhana
     if ($username === 'Paras' && $password === '092') {
         $_SESSION['username'] = $username;
         header("Location: dashboard.php");
@@ -36,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            background-image: url('login.png');
         }
         .login-container {
             background: #fff;
@@ -115,6 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="login-container">
         <h2>Login Clurb</h2>
+        <?php if (!empty($msg)): ?>
+            <div class="error-message"><?php echo htmlspecialchars($msg); ?></div>
+        <?php endif; ?>
         <?php if (!empty($error)): ?>
             <div class="error-message"><?php echo $error; ?></div>
         <?php endif; ?>

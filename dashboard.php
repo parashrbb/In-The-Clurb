@@ -4,6 +4,7 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php?msg=Please login first");
     exit();
 }
+$username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +43,8 @@ if (!isset($_SESSION['username'])) {
             <article class="OurAgency">
                     <img src="intheclurb.png" width="500" height="300">
                 <p class="OurAgency-Text">
+                    Welcome, <b><?php echo htmlspecialchars($username); ?></b>!
+                    <br>
                     In the Clurb is more than just an agency. It's a family, a stage, and a spotlight for every talent ready to shine.
                     <br>
                     Whether you're a rising model or a brand seeking the perfect face, we bring you together in one creative hub.
@@ -105,6 +108,9 @@ if (!isset($_SESSION['username'])) {
                 </address>
             </section>
         </section>
+        <div style="text-align:center; margin:30px;">
+            <a href="logout.php" style="color:#222; font-weight:bold;">Logout</a>
+        </div>
     </main>
 
     <script src="script.js"></script>
